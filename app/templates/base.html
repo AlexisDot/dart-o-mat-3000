@@ -1,43 +1,40 @@
 <!doctype html>
+
 <head>
-    <!-- Title -->
-    <title>Dart-O-Mat 3000</title>
-    <!-- Meta -->
-    <meta name="author" content="Patrick Hener">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- links -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
-    <!-- scripts -->
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-	    <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.min.js') }}"></script>
-    {% block head %}
-    {% endblock %}
+  <!-- Title -->
+  <title>Dart-O-Mat 3000</title>
+  <!-- Meta -->
+  <meta name="author" content="Patrick Hener">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- links -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+  <!-- scripts -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.min.js') }}"></script>
+  {% block head %}
+  {% endblock %}
 </head>
 
 <body {% block bodyparam %}{% endblock %}>
-<div class="jumbotron header">
-    {% block banner %}{% endblock %}
-</div>
-{% block content %}
-{% endblock %}
+  <div class="mt-3">
+  </div>
+  {% block content %}
+  {% endblock %}
+  <div class="footer px-3">
+      <div class="row">
+        <div class="col">{% trans %}Author{% endtrans %}: Patrick Hener</div>
+        <div class="col text-center">Dart-O-Mat 3000</div>
+        <div class="col text-right"><a href="https://github.com/patrickhener/dart-o-mat-3000" target="_blank"><img src="{{ url_for('static', filename='img/GitHub-Mark-32px.png') }}" /></a></div>
+      </div>
+  </div>
 
-<div class="jumbotron footer" style="margin-bottom:0">
-    <table class="table footer">
-        <tr>
-            <td align="left">{% trans %}Author{% endtrans %}: Patrick Hener</td>
-            <td align="left">Dart-O-Mat 3000</td>
-            <td align="right"><a href="https://github.com/patrickhener/dart-o-mat-3000" target="_blank"><img
-											src="{{ url_for('static', filename='img/GitHub-Mark-32px.png') }}"/></a></td>
-        </tr>
-    </table>
-</div>
-
-{% block script %}
-{% endblock %}
+  {% block script %}
+  {% endblock %}
 </body>
+
 </html>

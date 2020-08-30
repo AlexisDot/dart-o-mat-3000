@@ -1,221 +1,308 @@
-@import url('fonts_Merriweather.css');
+@import url('fonts_B612Mono.css');
 
 html, body {
-	height: 100%;
-	width: 100%;
-	margin: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 body {
-	font-family: 'Merriweather', serif;
-	background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
-	color: #fff;
-	border-radius: 25px;
+  font-family: 'B612Mono', serif;
+  background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
+  color: #fff;
+  border-radius: 25px;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.1;
+  min-width: 100vw;
+  min-height: 100vh;
+  bottom: 0;
+  right: 0;
+  background: url("../img/dart-board.svg");
+  background-size: cover;
+  background-position: bottom right;
+  background-repeat: no-repeat;
 }
 
 #Header {
-	height: 10%;
+  height: 10%;
 }
 
 #content {
-	height: 65%;
+  height: 65%;
 }
 
 #Footer {
-	height: 5%;
-}
-
-#header-left.table, #header-right.table {
-	background-color: #012432;
-	font-size: xx-large;
+  height: 5%;
+  top: 95%;
+  position: absolute;
 }
 
 #header-cricket-left.table, #header-cricket-right.table {
-	background-color: #012432;
-	font-size: x-large;
+  background-color: #012432;
+  font-size: x-large;
 }
 
 #throw-update.table td a {
-	text-align: center;
-	text-decoration: none;
-	display: block;
-	width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+#header-active {
+  background: rgba(0,0,0,0.3);
+  font-size: 4vw;
+}
+
+#header-active .remaining-score {
+  font-size: 11vw;
+  line-height: 1;
+}
+
+#header-active .message {
+  font-size: 2rem;
+  line-height: 2rem;
+  height: 2rem;
+}
+
+#header-active div {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 a, a:hover, a:visited, a:active {
-	color: #fff;
-	font-weight: bold;
-	text-decoration: underline;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-h1#playerName,h1#playerScore, h1#playerNumber, h2#playerSum, h2#playerThrow {
-	text-align: center;
-	vertical-align: middle;
+/* h1[id^=playerName], h1[id^=playerScore], h1[id^=playerNumber], h2[id^=playerSum], h2[id^=playerThrow] {
+  text-align: center;
+  vertical-align: middle;
+} */
+
+tr[id^=player] td {
+  vertical-align: middle;
 }
 
-
-div#playerName {
-	background-color: #012432;
-	padding: 10px;
+div[id^=playerName] {
+  background-color: #012432;
+  padding: 10px;
 }
 
-div#playerScore, div#playerNumber, div[id^="Sum-"] {
-	background-color: #3c5f6c;
-	padding: 10px;
+div[id^=playerScore], div[id^=playerNumber], div[id^="Sum-"] {
+  background-color: #3c5f6c;
+  padding: 10px;
 }
 
-div#playerMessage {
-	background-color: #3c5f6c;
-	padding: 10px;
-	text-align: center;
-	font-weight: bold;
+div[id^=playerMessage] {
+  background-color: #3c5f6c;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
 div[id^="Throws-"] {
-	background-color: #012432;
-	padding: 5px;
-	margin-left: 0px;
-	margin-right: 0px;
-	text-align: justify;
-	-ms-text-justify: distribute-all-lines;
-	text-justify: distribute-all-lines;
+  background-color: #012432;
+  padding: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
 }
 
 div#throw {
-	vertical-align: middle;
-	width: 33%;
-	vertical-align: top;
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
-	text-align: center;
+  vertical-align: middle;
+  width: 33%;
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  text-align: center;
 }
 
 div#scoreheader {
-	padding: 10px;
-	margin-bottom: 25px;
+  padding: 5px 10px;
+  margin-bottom: 25px;
+}
+
+tbody#score h1, tbody#score h2 {
+  margin: 0
+}
+
+tbody#score td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+tr.active {
+  background: rgba(0,0,0,0.3);
+  border: 2px solid white
 }
 
 div[id^="Border-"] {
-	margin-top: 25px;
-	padding-left: 0px;
-	padding-right: 0px;
-	margin-left: 10px;
-	margin-right: 10px;
+  margin-top: 25px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #3c5f6c;
+  transition: all 0.3s;
+}
+
+div[id^="Border-"].active {
+  border: 5px solid white;
+  box-shadow: black 10px 10px 15px;
 }
 
 div[id^="Cricket-Border-"] {
-	width: 45%;
-    margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	padding-left:0px;
-	padding-right: 0px;
+  width: 45%;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 table[id^="playerTable-"] {
-    table-layout: fixed;
-	width: 100%;
-	text-align: center;
-	border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
 }
 
 table[id^="playerTable-"] td:first-child {
-    width: 40%;
+  width: 40%;
+}
+
+#players-table thead {
+  border-bottom: 3px solid white;
+}
+
+.name-col {
+  width: 23vw;
+}
+
+.score-col {
+  width: 20vw;
+}
+
+.message-col {
+  width: 30vw;
 }
 
 #playerNameColumn, #playerLastThrows {
-	background-color: #012432;
+  background-color: #012432;
 }
 
 #playerScoreColumn, td[id^="Message-"] {
-	background-color: #3c5f6c;
+  background-color: #3c5f6c;
 }
 
 #playerLastThrows, td[id^="Message-"] {
-	height: 50px;
+  height: 50px;
 }
 
 #numberColumn:nth-child(even), #countColumn:nth-child(even) {
-	background-color: #012432;
+  background-color: #012432;
 }
 
 #numberColumn:nth-child(odd), #countColumn:nth-child(odd) {
-	background-color: #3c5f6c;
+  background-color: #3c5f6c;
 }
 
 table[id^="playerTable-"] tr td {
-	border: 1px solid black;
+  border: 1px solid black;
 }
 
 div.jumbotron.header {
-	background: url("../img/banner.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-	height: 15%;
+  background: url("../img/banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 15%;
 }
 
-div.jumbotron.footer {
-	background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
+div.footer {
+  background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
 }
 
 table.footer {
-	color: #fff;
+  color: #fff;
 }
 
 .btn-outline-primary {
-	color: #fff;
-	border-color: #fff;
+  color: #fff;
+  border-color: #fff;
 }
 
 .btn-outline-primary:hover {
-	background: #012432;
-	border-color: #000;
+  background: #012432;
+  border-color: #000;
 }
 
 .btn-outline-primary:focus {
-	background-color: unset;
-	box-shadow: unset;
-	border-color: unset;
+  background-color: unset;
+  box-shadow: unset;
+  border-color: unset;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active {
-	background-color: #3c5f6c;
-	box-shadow: unset;
-	border-color: #fff;
+  background-color: #3c5f6c;
+  box-shadow: unset;
+  border-color: #fff;
 }
 
 .from-control {
-	background-color: #fff;
+  background-color: #fff;
 }
 
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .btn-group {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.btn-group > button {
-    width: 100%;
+.btn-group>button {
+  width: 100%;
 }
-
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  -webkit-animation-name: fadeIn; /* Fade in the background */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  -webkit-animation-name: fadeIn;
+  /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
   animation-duration: 0.4s
@@ -223,17 +310,26 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  -webkit-animation-name: fadeIn; /* Fade in the background */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  -webkit-animation-name: fadeIn;
+  /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
   animation-duration: 0.4s
@@ -272,7 +368,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+  padding: 2px 16px;
+}
 
 .modal-footer {
   padding: 2px 16px;
@@ -283,21 +381,45 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /* Add Animation */
 @-webkit-keyframes slideIn {
-  from {bottom: -300px; opacity: 0}
-  to {bottom: 0; opacity: 1}
+  from {
+    bottom: -300px;
+    opacity: 0
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1
+  }
 }
 
 @keyframes slideIn {
-  from {bottom: -300px; opacity: 0}
-  to {bottom: 0; opacity: 1}
+  from {
+    bottom: -300px;
+    opacity: 0
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  from {opacity: 0}
-  to {opacity: 1}
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0}
-  to {opacity: 1}
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
 }

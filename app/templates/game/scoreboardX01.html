@@ -2,44 +2,87 @@
 {% block head %}
 <script src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
 {% endblock %}
-{% block bodyparam %}style="overflow: hidden;" onload="drawScoreboardX01({{ playerlist }}, {{ lastthrows }}, {{ throwsum }}), highlightActivePlayer('{{ player }}', '{{ player_id }}', '{{ rndcount }}', '{{ message }}', '{{ average }}', '{{ throwcount }}')"{% endblock %}
+{% block bodyparam %}style="overflow: hidden;" onload="drawScoreboardX01({{ playerlist }}, {{ lastthrows }}, {{ throwsum }}), highlightActivePlayer('{{ player }}', '{{ player_id }}', '{{ rndcount }}', '{{ message }}', '{{ average }}',
+'{{ throwcount }}')"{% endblock %}
 {% block content %}
-<div class="container-fluid" id="content">
-	<div class="row border-bottom border-top rounded" id="scoreheader">
-		<div class="col">
-			<table id="header-left" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Active Player{% endtrans %}:</td>
-					<td id="header-activePlayer">{{ player }}</td>
-				</tr><tr>
-					<td>{% trans %}Player round{% endtrans %}:</td>
-					<td id="header-rndcount">{{ rndcount }}</td>
-				</tr><tr>
-					<td>{% trans %}Player Average{% endtrans %}:</td>
-					<td id="header-average">{{ average }}</td>
-				</tr><tr>
-					<td>{% trans %}Player Throws{% endtrans %}:</td>
-					<td id="header-throwcount">{{ throwcount }}</td>
-				</tr>
-			</table>
+<div id="content">
+	<div class="row border-bottom border-top rounded h2" id="scoreheader">
+		<div class="col border-right">
+			<div class="row">
+				<div class="col">{% trans %}Game{% endtrans %}:</div>
+				<div class="col">{{ gametype }}</div>
+			</div>
+		</div>
+		<div class="col border-right">
+			<div class="row">
+				<div class="col">{% trans %}In{% endtrans %}:</div>
+				<div class="col">{{ startIn }}</div>
+			</div>
 		</div>
 		<div class="col">
-			<table id="header-right" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Game{% endtrans %}:</td>
-					<td>{{ gametype }}</td>
-				</tr><tr>
-					<td>{% trans %}In{% endtrans %}:</td>
-					<td>{{ startIn }}</td>
-				</tr><tr>
-					<td>{% trans %}Out{% endtrans %}:</td>
-					<td>{{ exitOut }}</td>
-				</tr>
-			</table>
+			<div class="row">
+				<div class="col">{% trans %}Out{% endtrans %}:</div>
+				<div class="col">{{ exitOut }}</div>
+			</div>
 		</div>
 	</div>
-	<br>
-	<div class="row border-top rounded" id="score"></div>
+	<div class="row mb-4 p-3" id="header-active">
+		<div class="col-4">
+			<div class="row">
+				<div class="col-12" id="header-activePlayer">
+					{{ player }}
+				</div>
+				<div class="col">
+					<table id="active-player-info" class="table table-sm text-light h2 m-0">
+						<tbody>
+							<tr>
+								<td>{% trans %}Round{% endtrans %}:</td>
+								<td id="header-rndcount" class="text-center">{{ rndcount }}</td>
+							</tr>
+							<tr>
+								<td>{% trans %}Average{% endtrans %}:</td>
+								<td id="header-average" class="text-center">{{ average }}</td>
+							</tr>
+							<tr>
+								<td>{% trans %}Throws{% endtrans %}:</td>
+								<td id="header-throwcount" class="text-center">{{ throwcount }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-12 remaining-score">
+				</div>
+				<div class="col-12 message">
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row round-score">
+				<div class="col-4 throw"></div>
+				<div class="col-4 throw"></div>
+				<div class="col-4 throw"></div>
+				<div class="col-12 text-centered display-2 sum"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row border-top rounded px-3">
+		<table class="table table-sm text-light" id="players-table">
+			<thead>
+				<tr class="text-center h4 ">
+					<td class="text-left px-3 name-col">{% trans %}Player{% endtrans %}</td>
+					<td class="px-3 score-col">{% trans %}Score{% endtrans %}</td>
+					<td class="px-3 message-col">{% trans %}Message{% endtrans %}</td>
+					<td class="px-3" colspan="3">{% trans %}Throws{% endtrans %}</td>
+					<td class="text-right px-3">{% trans %}Total{% endtrans %}</td>
+				</tr>
+			</thead>
+			<tbody id="score"></tbody>
+		</table>
+	</div>
 </div>
 <br>
 {% endblock %}

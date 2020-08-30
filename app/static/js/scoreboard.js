@@ -79,44 +79,49 @@ socket.on('drawPodiumSplit', function(podium, word) {
 
 // Functions
 function drawScoreboardX01(list, lastthrowsall, throwsum) {
-    var div = document.getElementById("score");
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
+    var tableBody = document.getElementById("score");
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
     }
     for (var item in list) {
-        var borderDiv = document.createElement("div");
-        borderDiv.setAttribute("class", "col");
-        borderDiv.setAttribute("id", "Border-" + list[item].Player);
-        var nameDiv = document.createElement("div");
-        nameDiv.setAttribute("name", "Player-" + list[item].Player);
-        nameDiv.setAttribute("id", "playerName");
-        nameDiv.innerHTML = "<h1 id='playerName'>" + list[item].Player + "</h1>";
-        borderDiv.appendChild(nameDiv);
-        var scoreDiv = document.createElement("div");
-        scoreDiv.setAttribute("name", "Score-" + list[item].Player);
-        scoreDiv.setAttribute("id", "playerScore");
-        scoreDiv.innerHTML = "<h1 id='playerScore'>" + list[item].Score + "</h1>";
-        borderDiv.appendChild(scoreDiv);
-        var messageDiv = document.createElement("div");
-        messageDiv.setAttribute("name", "Message-" + list[item].Player);
-        messageDiv.setAttribute("id", "playerMessage");
-        messageDiv.innerHTML = "";
-        borderDiv.appendChild(messageDiv);
-        var throwDiv = document.createElement("div");
-        throwDiv.setAttribute("id", "Throws-" + list[item].PlayerID);
-        borderDiv.appendChild(throwDiv);
-        var sumDiv = document.createElement("div");
-        sumDiv.setAttribute("id", "Sum-" + list[item].PlayerID);
-        sumDiv.innerHTML="";
-        borderDiv.appendChild(sumDiv);
-        div.appendChild(borderDiv);
+        var scoreRow = document.createElement("tr");
+        scoreRow.setAttribute("id", "player-" + list[item].PlayerID);
+        scoreRow.setAttribute("class", "text-center");
+        var nameTd = document.createElement("td");
+        nameTd.setAttribute("name", "Player-" + list[item].Player);
+        nameTd.setAttribute("id", "playerName-" + list[item].Player);
+        nameTd.setAttribute("class", "text-left");
+        nameTd.innerHTML = "<h2 id='playerName-" + list[item].Player + "'>" + list[item].Player + "</h1>";
+        scoreRow.appendChild(nameTd);
+        var scoreTd = document.createElement("td");
+        scoreTd.setAttribute("name", "Score-" + list[item].Player);
+        scoreTd.setAttribute("id", "playerScore-" + list[item].Player);
+        scoreTd.innerHTML = "<h1 id='playerScore-" + list[item].Player + "' class='player-score'>" + list[item].Score + "</h1>";
+        scoreRow.appendChild(scoreTd);
+        var messageTd = document.createElement("td");
+        messageTd.setAttribute("name", "Message-" + list[item].Player);
+        messageTd.setAttribute("id", "playerMessage-" + list[item].Player);
+        messageTd.setAttribute("class", "text-center player-message");
+        messageTd.innerHTML = "-";
+        scoreRow.appendChild(messageTd);
+        // var throwDiv = document.createElement("div");
+        // throwDiv.setAttribute("id", "Throws-" + list[item].PlayerID);
+        // scoreRow.appendChild(throwDiv);
+        var sumTd = document.createElement("td");
+        sumTd.setAttribute("id", "Sum-" + list[item].PlayerID);
+        sumTd.setAttribute("class", "text-right");
+        sumTd.innerHTML="";
+        scoreRow.appendChild(sumTd);
+        tableBody.appendChild(scoreRow);
     }
+
+    var throwsCounted = 0;
     for (var item in lastthrowsall) {
         for (var item2 in lastthrowsall[item]) {
             var array = lastthrowsall[item][item2].split(",");
-            throwDiv = document.getElementById("Throws-" + array[0]);
-            var throww = document.createElement("div");
-            throww.setAttribute("id", "throw");
+            sumTd = document.getElementById("Sum-" + array[0]);
+            var throww = document.createElement("td");
+            throww.setAttribute("class", "throw");
             var output = "";
             if (array[3] == "2") {
                 output += "D";
@@ -125,29 +130,39 @@ function drawScoreboardX01(list, lastthrowsall, throwsum) {
                 output += "T";
             }
             output += array[2];
-            throww.innerHTML = "<h2 id='playerThrow'>" + output + "</h2>";
-            throwDiv.appendChild(throww);
+            throww.innerHTML = "<h2 class='playerThrow'>" + output + "</h2>";
+            sumTd.before(throww);
+        }
+        throwsCounted = lastthrowsall[item].length;
+        for(throwsCounted; throwsCounted < 3; throwsCounted++){
+          sumTd = document.getElementById("Sum-" + array[0]);
+          var throww = document.createElement("td");
+          throww.setAttribute("class", "throw");
+          throww.innerHTML = "<h2 class='playerThrow'>-</h2>";
+          sumTd.before(throww);
         }
     }
 
+
+
     for (var item in throwsum) {
         var array = throwsum[item].split(",");
-        var div2 = document.getElementById("Sum-" + array[0]);
-        while(div2.firstChild) {
-            div2.removeChild(div2.firstChild);
+        var td2 = document.getElementById("Sum-" + array[0]);
+        while(td2.firstChild) {
+            td2.removeChild(td2.firstChild);
         }
-        sumDiv = document.getElementById("Sum-" + array[0]);
+        sumTd = document.getElementById("Sum-" + array[0]);
         var sum = document.createElement("div");
-        sum.setAttribute("id", "sum");
-        sum.innerHTML = "<h2 id='playerSum'>" + array[1] + "</h2>";
-        sumDiv.appendChild(sum);
+        sum.setAttribute("class", "sum");
+        sum.innerHTML = "<h2 id='playerSum' class='player-sum'>" + array[1] + "</h2>";
+        sumTd.appendChild(sum);
     }
 }
 
 function highlightActivePlayer(activePlayer, playerID, playerRound, message, average, throwcount) {
-    var borderDiv = document.getElementById("Border-" + activePlayer);
-    borderDiv.style.border='5px solid white';
-    borderDiv.style.boxShadow='10px 10px 15px black';
+
+    var activeRow = document.getElementById("playerName-" + activePlayer).parentElement;
+    activeRow.setAttribute("class", "text-center active");
     var divActivePlayer = document.getElementById("header-activePlayer");
     divActivePlayer.innerHTML = activePlayer;
     var divRndcount = document.getElementById("header-rndcount");
@@ -156,8 +171,27 @@ function highlightActivePlayer(activePlayer, playerID, playerRound, message, ave
     divAverage.innerHTML = average;
     var divThrowcount = document.getElementById("header-throwcount");
     divThrowcount.innerHTML = throwcount;
-    var messageDiv = document.getElementsByName("Message-" + activePlayer);
-    messageDiv[0].innerHTML = "<h1>" + message + "</h1>";
+    if(message.toLowerCase().includes("winner")){
+      var messageTd = document.querySelector(".active").previousElementSibling.querySelector(".player-message");
+      messageTd.innerHTML = message;
+    } else {
+      var messageTd = document.getElementsByName("Message-" + activePlayer);
+      messageTd[0].innerHTML = message;
+    }
+    var activePlayerThrows = document.querySelectorAll(".active .playerThrow");
+    var activeHeaderThrows = document.querySelectorAll("#header-active .throw");
+    for(let i = 0; i < 3; i++){
+      activeHeaderThrows[i].innerHTML = activePlayerThrows[i].innerHTML;
+    }
+    var activePlayerScore = document.querySelector(".active .player-score");
+    var activeHeaderScore = document.querySelector("#header-active .remaining-score");
+    activeHeaderScore.innerHTML = activePlayerScore.innerHTML;
+    var activePlayerSum = document.querySelector(".active .player-sum");
+    var activeHeaderSum = document.querySelector("#header-active .sum");
+    activeHeaderSum.innerHTML = activePlayerSum.innerHTML;
+    var activePlayerMessage = document.querySelector(".active .player-message");
+    var activeHeaderMessage = document.querySelector("#header-active .message");
+    activeHeaderMessage.innerHTML = activePlayerMessage.innerHTML;
 }
 
 function playSound(soundfile) {
@@ -446,7 +480,7 @@ function drawScoreboardSplit(list, lastthrows) {
                 output += "T";
             }
             output += array[2];
-            throww.innerHTML = "<h2 id='playerThrow'>" + output + "</h2>";
+            throww.innerHTML = "<h2 class='playerThrow'>" + output + "</h2>";
             throwDiv.appendChild(throww);
         }
     }
@@ -477,7 +511,7 @@ function drawPodiumX01(podium, word) {
             // array[1] = podium place
             var array = podium[item].split(",");
             var scoreDiv = document.getElementsByName("Score-" + array[0]);
-            scoreDiv[0].innerHTML = "<h1 id='playerScore'>" + word + " " + array[1] + "</h1>";
+            scoreDiv[0].innerHTML = "<h1 id='playerScore-'" + array[0] +">" + word + " " + array[1] + "</h1>";
         }
     }
 }
