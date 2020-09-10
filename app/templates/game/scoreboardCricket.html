@@ -3,42 +3,96 @@
 <script src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
 {% endblock %}
 
-{% block bodyparam %}style="overflow: hidden;" onload='drawScoreboardCricket({{ playerlist }}, "{{ lastthrows }}", "{{ closed }}"), highlightActiveCricket("{{ player }}","{{ player_id }}","{{ rndcount }}","{{ message }}","{{ throwcount }}")'{% endblock %}
+{% block bodyparam %}style="overflow: hidden;" onload='drawScoreboardCricket({{ playerlist }}, "{{ lastthrows }}", {{ closed }}),
+highlightActiveCricket("{{ player }}","{{ player_id }}","{{ rndcount }}","{{ message }}","{{ throwcount }}")'{% endblock %}
 
 
 {% block content %}
-<div class="container-fluid" id="content">
+<div id="content">
 	<div id="scoreheader" class="row border-bottom border-top rounded">
-		<div class="col">
-			<table id="header-cricket-left" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Active Player{% endtrans %}:</td>
-					<td id="header-activePlayer">{{ player }}</td>
-				</tr><tr>
-					<td>{% trans %}Player round{% endtrans %}:</td>
-					<td id="header-rndcount">{{ rndcount }}</td>
-				</tr><tr>
-					<td>{% trans %}Player Throws{% endtrans %}:</td>
-					<td id="header-throwcount">{{ throwcount }}</td>
-				</tr>
-			</table>
-		</div>
-
-		<div class="col">
-			<table id="header-cricket-right" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Game{% endtrans %}:</td>
-					<td>{{ gametype }}</td>
-				</tr><tr>
-					<td>{% trans %}Variant{% endtrans %}:</td>
-					<td>{{ variant }}</td>
-				</tr>
-			</table>
+		<div class="row h4 w-100 mb-0" id="scoreheader">
+			<div class="col border-right">
+				<div class="row">
+					<div class="col">{% trans %}Game{% endtrans %}:</div>
+					<div class="col">{{ gametype }}</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="row">
+					<div class="col">{% trans %}Variant{% endtrans %}:</div>
+					<div class="col">{{ variant }}</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<br>
-	<div class="row border-top rounded" id="score"></div>
+	<div class="row mb-4 p-3" id="header-active">
+		<div class="col-4">
+			<div class="row">
+				<div class="col-12 mb-4" id="header-activePlayer">
+					{{ player }}
+				</div>
+				<div class="col">
+				  <table id="header-cricket-left" class="table table-sm text-light h2 m-0">
+						<tr>
+				      <td>{% trans %}Player round{% endtrans %}:</td>
+				      <td id="header-rndcount" class="text-center">{{ rndcount }}</td>
+				    </tr><tr>
+				      <td>{% trans %}Player Throws{% endtrans %}:</td>
+				      <td id="header-throwcount" class="text-center">{{ throwcount }}</td>
+				    </tr>
+				  </table>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="row round-score-cricket">
+				<div class="col-4 throw display-4"></div>
+				<div class="col-4 throw display-4"></div>
+				<div class="col-4 throw display-4"></div>
+				<div class="col-12 message my-2"></div>
+				<div class="col-12 cricketlist flex-wrap">
+					<div class="row h2 m-0 w-100 border">
+						<div class="col c-15-label countColumn">15</div>
+						<div class="col c-16-label countColumn">16</div>
+						<div class="col c-17-label countColumn">17</div>
+						<div class="col c-18-label countColumn">18</div>
+						<div class="col c-19-label countColumn">19</div>
+						<div class="col c-20-label countColumn">20</div>
+						<div class="col c-25-label countColumn">Bull</div>
+					</div>
+					<div class="row h2 m-0 w-100 border count-row">
+						<div class="col c-15-count countColumn"></div>
+						<div class="col c-16-count countColumn"></div>
+						<div class="col c-17-count countColumn"></div>
+						<div class="col c-18-count countColumn"></div>
+						<div class="col c-19-count countColumn"></div>
+						<div class="col c-20-count countColumn"></div>
+						<div class="col c-25-count countColumn"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row border-top rounded px-3">
+		<table class="table table-sm text-light" id="players-table">
+			<thead>
+				<tr class="text-center h4 ">
+					<td class="text-left px-3 name-col dark-column">{% trans %}Player{% endtrans %}</td>
+					<td class="px-3 score-col">{% trans %}Score{% endtrans %}</td>
+					<td class="px-3 message-col">{% trans %}Message{% endtrans %}</td>
+					<td class="px-3 dark-column" colspan="3">{% trans %}Throws{% endtrans %}</td>
+					<td class="text-center px-3 countColumn">15</td>
+					<td class="text-center px-3 countColumn">16</td>
+					<td class="text-center px-3 countColumn">17</td>
+					<td class="text-center px-3 countColumn">18</td>
+					<td class="text-center px-3 countColumn">19</td>
+					<td class="text-center px-3 countColumn">20</td>
+					<td class="text-center px-3 countColumn">Bull</td>
+				</tr>
+			</thead>
+			<tbody id="score"></tbody>
+		</table>
+	</div>
 </div>
-<br>
 
 {% endblock %}

@@ -199,6 +199,14 @@ table[id^="playerTable-"] td:first-child {
   width: 30vw;
 }
 
+.round-score-cricket div {
+  line-height: 3rem
+}
+
+.round-score-cricket .countColumn {
+  min-height: 3rem;
+}
+
 #playerNameColumn, #playerLastThrows {
   background-color: #012432;
 }
@@ -211,12 +219,37 @@ table[id^="playerTable-"] td:first-child {
   height: 50px;
 }
 
-#numberColumn:nth-child(even), #countColumn:nth-child(even) {
+tbody#score td.countColumn {
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.countColumn img {
+  max-height: 2.1rem
+}
+
+.countColumn img.closed {
+  background: rgba(255,255,255,.7);
+  opacity: .5;
+  border-radius: 5px
+}
+
+.count-row .countColumn img {
+  max-height: 2.8rem
+}
+
+#numberColumn:nth-child(even), .countColumn:nth-child(even), .dark-column {
   background-color: #012432;
 }
 
-#numberColumn:nth-child(odd), #countColumn:nth-child(odd) {
+#numberColumn:nth-child(odd), .countColumn:nth-child(odd) {
   background-color: #3c5f6c;
+}
+
+.player-last-throws {
+  min-width: 10ch;
+  text-align: center;
 }
 
 table[id^="playerTable-"] tr td {
