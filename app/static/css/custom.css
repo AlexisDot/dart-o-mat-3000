@@ -141,6 +141,7 @@ tbody#score h1, tbody#score h2 {
 tbody#score td {
   padding-left: 1rem;
   padding-right: 1rem;
+  vertical-align: middle;
 }
 
 tr.active {
@@ -248,8 +249,15 @@ tbody#score td.countColumn {
 }
 
 .player-last-throws {
-  min-width: 10ch;
+  min-width: 7ch;
   text-align: center;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+table.table-cricket td[id^=Message] span{
+  line-height: 19px !important;
+  display: block;
 }
 
 table[id^="playerTable-"] tr td {

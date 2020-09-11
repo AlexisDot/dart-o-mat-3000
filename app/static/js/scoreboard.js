@@ -358,7 +358,7 @@ function highlightActiveCricket(activePlayer, playerID, playerRound, message, th
   var divThrowcount = document.getElementById("header-throwcount");
   divThrowcount.innerHTML = throwcount;
   var messageColumn = document.getElementById("Message-" + activePlayer);
-  messageColumn.innerHTML = "<h2>" + message + "</h2>";
+  messageColumn.innerHTML = "<span>" + message + "<span>";
   var activePlayerMessage = document.querySelector(".round-score-cricket .message");
   activePlayerMessage.innerHTML = message;
   var activePlayerThrows = document.querySelectorAll(".active .player-last-throws h2");

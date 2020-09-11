@@ -274,6 +274,8 @@ def score_cricket(hit, mod):
         if throwcount == 3:
             game.nextPlayerNeeded = True
             result += gettext(u" Remove Darts!")
+            if result == "- Remove Darts!":
+                result = "Remove Darts!"
         db.session.add(throw)
         db.session.commit()
 
