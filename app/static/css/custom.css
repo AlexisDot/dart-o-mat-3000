@@ -1,14 +1,18 @@
 @import url('fonts_B612Mono.css');
 
+:root {
+  --bg-color-1: #1d3c4c;
+  --bg-color-2: #3c5b6c;
+}
+
 html, body {
-  height: 100%;
   width: 100%;
   margin: 0;
 }
 
 body {
   font-family: 'B612Mono', serif;
-  background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
+  background: linear-gradient(to right, var(--bg-color-1), var(--bg-color-2)) ;
   color: #fff;
   border-radius: 25px;
 }
@@ -26,24 +30,15 @@ body::before {
   background-size: cover;
   background-position: bottom right;
   background-repeat: no-repeat;
+  z-index: -1;
 }
 
 #Header {
   height: 10%;
 }
 
-#content {
-  height: 65%;
-}
-
-#Footer {
-  height: 5%;
-  top: 95%;
-  position: absolute;
-}
-
 #header-cricket-left.table, #header-cricket-right.table {
-  background-color: #012432;
+  background-color: rgba(0,0,0,.3);
   font-size: x-large;
 }
 
@@ -55,7 +50,7 @@ body::before {
 }
 
 #header-active {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   font-size: 4vw;
 }
 
@@ -73,7 +68,6 @@ body::before {
 #header-active div {
   display: flex;
   align-items: center;
-  align-content: center;
   justify-content: center;
 }
 
@@ -83,34 +77,36 @@ a, a:hover, a:visited, a:active {
   text-decoration: underline;
 }
 
+
+.round-info {
+  flex-grow: 1;
+  height: 100%
+}
+
+.info-table {
+  align-self: flex-end;
+}
+
 /* h1[id^=playerName], h1[id^=playerScore], h1[id^=playerNumber], h2[id^=playerSum], h2[id^=playerThrow] {
   text-align: center;
   vertical-align: middle;
 } */
-
 tr[id^=player] td {
   vertical-align: middle;
 }
 
 div[id^=playerName] {
-  background-color: #012432;
-  padding: 10px;
-}
-
-div[id^=playerScore], div[id^=playerNumber], div[id^="Sum-"] {
-  background-color: #3c5f6c;
-  padding: 10px;
+  padding: 0 0 0 15px;
 }
 
 div[id^=playerMessage] {
-  background-color: #3c5f6c;
-  padding: 10px;
+  background-color: rgba(255,255,255,.1);
   text-align: center;
   font-weight: bold;
 }
 
 div[id^="Throws-"] {
-  background-color: #012432;
+  background-color: rgba(0,0,0,.3);
   padding: 5px;
   margin-left: 0px;
   margin-right: 0px;
@@ -130,8 +126,7 @@ div#throw {
 }
 
 div#scoreheader {
-  padding: 5px 10px;
-  margin-bottom: 25px;
+  padding: .3vh 10px;
 }
 
 tbody#score h1, tbody#score h2 {
@@ -139,13 +134,12 @@ tbody#score h1, tbody#score h2 {
 }
 
 tbody#score td {
-  padding-left: 1rem;
-  padding-right: 1rem;
   vertical-align: middle;
+  padding: 0
 }
 
 tr.active {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   border: 2px solid white
 }
 
@@ -161,7 +155,6 @@ div[id^="Border-"] {
 
 div[id^="Border-"].active {
   border: 5px solid white;
-  box-shadow: black 10px 10px 15px;
 }
 
 div[id^="Cricket-Border-"] {
@@ -194,10 +187,16 @@ table[id^="playerTable-"] td:first-child {
 
 .score-col {
   width: 20vw;
+  background-color: rgba(255,255,255,.1);
 }
 
 .message-col {
   width: 30vw;
+  background-color: rgba(255,255,255,.1);
+}
+
+.sum-col {
+  background-color: rgba(255,255,255,.1);
 }
 
 .round-score-cricket div {
@@ -209,15 +208,15 @@ table[id^="playerTable-"] td:first-child {
 }
 
 #playerNameColumn, #playerLastThrows {
-  background-color: #012432;
+  background-color: rgba(0,0,0,.3);
 }
 
 #playerScoreColumn, td[id^="Message-"] {
-  background-color: #3c5f6c;
+  background-color: rgba(255,255,255,.1);
 }
 
 #playerLastThrows, td[id^="Message-"] {
-  height: 50px;
+  height: 5vh;
 }
 
 tbody#score td.countColumn {
@@ -227,13 +226,18 @@ tbody#score td.countColumn {
 }
 
 .countColumn img {
-  max-height: 2.1rem
+  max-height: 4vh
 }
 
 .countColumn img.closed {
-  background: rgba(255,255,255,.7);
+  background: rgba(255, 255, 255, .7);
   opacity: .5;
   border-radius: 5px
+}
+
+.count-row td {
+  height: 2.8rem;
+  min-height: 45px
 }
 
 .count-row .countColumn img {
@@ -241,11 +245,11 @@ tbody#score td.countColumn {
 }
 
 #numberColumn:nth-child(even), .countColumn:nth-child(even), .dark-column {
-  background-color: #012432;
+  background-color: rgba(0,0,0,.3);
 }
 
 #numberColumn:nth-child(odd), .countColumn:nth-child(odd) {
-  background-color: #3c5f6c;
+  background-color: rgba(255,255,255,.1);
 }
 
 .player-last-throws {
@@ -255,7 +259,7 @@ tbody#score td.countColumn {
   padding-right: 0 !important;
 }
 
-table.table-cricket td[id^=Message] span{
+table.table-cricket td[id^=Message] span {
   line-height: 19px !important;
   display: block;
 }
@@ -272,11 +276,14 @@ div.jumbotron.header {
 }
 
 div.footer {
-  background-image: linear-gradient(to right, #1d3c4c, #3c5b6c);
-  position: absolute;
+  background-image: linear-gradient(to right, var(--bg-color-1), var(--bg-color-2));
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100vw;
+  height: 2.5rem;
+  margin-top: 2.5rem;
+  padding: 5px;
 }
 
 table.footer {
@@ -289,7 +296,7 @@ table.footer {
 }
 
 .btn-outline-primary:hover {
-  background: #012432;
+  background: rgba(0,0,0,.3);
   border-color: #000;
 }
 
@@ -300,7 +307,7 @@ table.footer {
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active {
-  background-color: #3c5f6c;
+  background-color: rgba(255,255,255,.1);
   box-shadow: unset;
   border-color: #fff;
 }
@@ -380,7 +387,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .modal-content {
   position: fixed;
   bottom: 0;
-  background-color: #3c5f6c;
+  background-color: rgba(255,255,255,.1);
   width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
@@ -405,7 +412,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #012432;
+  background-color: rgba(0,0,0,.3);
   color: white;
 }
 
@@ -415,7 +422,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #012432;
+  background-color: #rgba(0,0,0,.3);
   color: white;
   height: 15px;
 }
@@ -463,4 +470,48 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   to {
     opacity: 1
   }
+}
+
+.h4 {
+  font-size: 1rem;
+}
+
+@media (min-width: 576px) {
+  .h4 {
+    font-size: 1rem;
+  }
+
+  .player-last-throws {
+    min-width: 3.7ch;
+  }
+}
+
+@media (min-width: 768px) {
+  .h4 {
+    font-size: 1.1rem;
+  }
+
+    .player-last-throws {
+      min-width: 4ch;
+    }
+}
+
+@media (min-width: 992px) {
+  .h4 {
+    font-size: 1.3rem;
+  }
+
+    .player-last-throws {
+      min-width: 4.6ch;
+    }
+}
+
+@media (min-width: 1200px) {
+  .h4 {
+    font-size: 1.5rem;
+  }
+
+    .player-last-throws {
+      min-width: 5.2ch;
+    }
 }
