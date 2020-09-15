@@ -202,8 +202,9 @@ table[id^="playerTable-"] td:first-child {
   line-height: 3rem
 }
 
-.round-score-cricket .countColumn {
+.round-score-cricket td.countColumn {
   min-height: 3rem;
+  padding: 0;
 }
 
 #playerNameColumn, #playerLastThrows {
@@ -240,7 +241,7 @@ tbody#score td.countColumn {
 }
 
 .count-row .countColumn img {
-  max-height: 2.8rem
+  max-height: 2.2rem
 }
 
 #numberColumn:nth-child(even), .countColumn:nth-child(even), .dark-column {
