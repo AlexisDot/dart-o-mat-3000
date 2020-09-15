@@ -2,6 +2,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
   <!-- Title -->
   <title>Dart-O-Mat 3000</title>
@@ -23,14 +24,16 @@
 </head>
 
 <body {% block bodyparam %}{% endblock %}>
-  {% block content %}
-  {% endblock %}
+  <div class="footer-offset">
+    {% block content %}
+    {% endblock %}
+  </div>
   <div class="footer px-3">
-      <div class="row">
-        <div class="col">{% trans %}Author{% endtrans %}: Patrick Hener</div>
-        <div class="col text-center">Dart-O-Mat 3000</div>
-        <div class="col text-right"><a href="https://github.com/patrickhener/dart-o-mat-3000" target="_blank"><img src="{{ url_for('static', filename='img/GitHub-Mark-32px.png') }}" /></a></div>
-      </div>
+    <div class="row">
+      <div class="col">{% trans %}Author{% endtrans %}: Patrick Hener</div>
+      <div class="col text-center">Dart-O-Mat 3000</div>
+      <div class="col text-right"><a href="https://github.com/patrickhener/dart-o-mat-3000" target="_blank"><img src="{{ url_for('static', filename='img/GitHub-Mark-32px.png') }}" /></a></div>
+    </div>
   </div>
 
   {% block script %}

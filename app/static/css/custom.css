@@ -12,7 +12,7 @@ html, body {
 
 body {
   font-family: 'B612Mono', serif;
-  background: linear-gradient(to right, var(--bg-color-1), var(--bg-color-2)) ;
+  background: linear-gradient(to right, var(--bg-color-1), var(--bg-color-2));
   color: #fff;
   border-radius: 25px;
 }
@@ -38,7 +38,7 @@ body::before {
 }
 
 #header-cricket-left.table, #header-cricket-right.table {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
   font-size: x-large;
 }
 
@@ -77,7 +77,6 @@ a, a:hover, a:visited, a:active {
   text-decoration: underline;
 }
 
-
 .round-info {
   flex-grow: 1;
   height: 100%
@@ -100,13 +99,13 @@ div[id^=playerName] {
 }
 
 div[id^=playerMessage] {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
   text-align: center;
   font-weight: bold;
 }
 
 div[id^="Throws-"] {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
   padding: 5px;
   margin-left: 0px;
   margin-right: 0px;
@@ -187,16 +186,16 @@ table[id^="playerTable-"] td:first-child {
 
 .score-col {
   width: 20vw;
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
 }
 
 .message-col {
   width: 30vw;
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
 }
 
 .sum-col {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
 }
 
 .round-score-cricket div {
@@ -208,11 +207,11 @@ table[id^="playerTable-"] td:first-child {
 }
 
 #playerNameColumn, #playerLastThrows {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
 }
 
 #playerScoreColumn, td[id^="Message-"] {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
 }
 
 #playerLastThrows, td[id^="Message-"] {
@@ -245,11 +244,11 @@ tbody#score td.countColumn {
 }
 
 #numberColumn:nth-child(even), .countColumn:nth-child(even), .dark-column {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
 }
 
 #numberColumn:nth-child(odd), .countColumn:nth-child(odd) {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
 }
 
 .player-last-throws {
@@ -281,9 +280,11 @@ div.footer {
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 2.5rem;
-  margin-top: 2.5rem;
   padding: 5px;
+}
+
+.footer-offset {
+  margin-bottom: 5vh;
 }
 
 table.footer {
@@ -296,7 +297,7 @@ table.footer {
 }
 
 .btn-outline-primary:hover {
-  background: rgba(0,0,0,.3);
+  background: rgba(0, 0, 0, .3);
   border-color: #000;
 }
 
@@ -307,7 +308,7 @@ table.footer {
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
   box-shadow: unset;
   border-color: #fff;
 }
@@ -387,7 +388,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .modal-content {
   position: fixed;
   bottom: 0;
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, .1);
   width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
@@ -412,7 +413,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .modal-header {
   padding: 2px 16px;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
   color: white;
 }
 
@@ -422,9 +423,14 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #rgba(0,0,0,.3);
+  background-color: #rgba(0, 0, 0, .3);
   color: white;
   height: 15px;
+}
+
+input:checked+label.btn {
+  color: #fff;
+  background-color: #333
 }
 
 /* Add Animation */
@@ -491,9 +497,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     font-size: 1.1rem;
   }
 
-    .player-last-throws {
-      min-width: 4ch;
-    }
+  .player-last-throws {
+    min-width: 4ch;
+  }
 }
 
 @media (min-width: 992px) {
@@ -501,9 +507,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     font-size: 1.3rem;
   }
 
-    .player-last-throws {
-      min-width: 4.6ch;
-    }
+  .player-last-throws {
+    min-width: 4.6ch;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -511,7 +517,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     font-size: 1.5rem;
   }
 
-    .player-last-throws {
-      min-width: 5.2ch;
-    }
+  .player-last-throws {
+    min-width: 5.2ch;
+  }
 }
