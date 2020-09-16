@@ -152,6 +152,17 @@ div[id^="Border-"] {
   transition: all 0.3s;
 }
 
+.player-atc {
+  background: #3c5f6c;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,.2);
+  font-size: 3vh
+}
+
+.player-atc.active {
+  border: 3px solid white
+}
+
 div[id^="Border-"].active {
   border: 5px solid white;
 }

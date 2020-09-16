@@ -372,33 +372,37 @@ function drawScoreboardATC(list) {
   }
   for (var item in list) {
     var borderDiv = document.createElement("div");
-    borderDiv.setAttribute("class", "col");
-    borderDiv.setAttribute("id", "Border-" + list[item].Player);
+    borderDiv.setAttribute("class", "col-3 mt-3 justify-content-center");
+    borderDiv.setAttribute("id", "border_" + list[item].Player);
+    var innerDiv = document.createElement("div");
+    innerDiv.setAttribute("class", "w-100 player-atc");
     var nameDiv = document.createElement("div");
     nameDiv.setAttribute("name", "Player-" + list[item].Player);
-    nameDiv.setAttribute("id", "playerName");
-    nameDiv.innerHTML = "<h1 id='playerName'>" + list[item].Player + "</h1>";
-    borderDiv.appendChild(nameDiv);
+    nameDiv.setAttribute("class", "w-100 text-center border-bottom mt-2");
+    nameDiv.innerHTML = "<div>" + list[item].Player + "</div>";
+    innerDiv.appendChild(nameDiv);
     var numberDiv = document.createElement("div");
     numberDiv.setAttribute("name", "Number-" + list[item].Player);
-    numberDiv.setAttribute("id", "playerNumber");
-    numberDiv.innerHTML = "<h1 id='playerNumber'>" + list[item].Number + "</h1>";
-    borderDiv.appendChild(numberDiv);
+    numberDiv.setAttribute("class", "w-100 text-center mt-2");
+    numberDiv.innerHTML = "<div class='player-number'>" + list[item].Number + "</div>";
+    innerDiv.appendChild(numberDiv);
     var messageDiv = document.createElement("div");
     messageDiv.setAttribute("name", "Message-" + list[item].Player);
-    messageDiv.setAttribute("id", "playerMessage");
-    messageDiv.innerHTML = "";
-    borderDiv.appendChild(messageDiv);
+    messageDiv.setAttribute("id", "playerMessage_" + list[item].Player);
+    messageDiv.setAttribute("class", "w-100 text-center");
+    messageDiv.innerHTML = "-";
+    innerDiv.appendChild(messageDiv);
     var throwDiv = document.createElement("div");
     throwDiv.setAttribute("id", "Throws-" + list[item].PlayerID);
-    borderDiv.appendChild(throwDiv);
+    innerDiv.appendChild(throwDiv);
+    borderDiv.appendChild(innerDiv);
     div.appendChild(borderDiv);
   }
 }
 
 function highlightATC(activePlayer, playerRound, throwcount, message) {
-  var borderDiv = document.getElementById("Border-" + activePlayer);
-  borderDiv.style.border = '5px solid white';
+  var borderDiv = document.querySelector("#border_" + activePlayer + " .player-atc");
+  borderDiv.setAttribute("class", borderDiv.classList.value + " active");
   var divActivePlayer = document.getElementById("header-activePlayer");
   divActivePlayer.innerHTML = activePlayer;
   var divRndcount = document.getElementById("header-rndcount");
@@ -406,7 +410,11 @@ function highlightATC(activePlayer, playerRound, throwcount, message) {
   var divThrowcount = document.getElementById("header-throwcount");
   divThrowcount.innerHTML = throwcount;
   var messageDiv = document.getElementsByName("Message-" + activePlayer);
-  messageDiv[0].innerHTML = "<h1>" + message + "</h1>";
+  messageDiv[0].innerHTML = "<div>" + message + "<div>";
+  var activeHitNext = document.querySelector(".player-atc.active .player-number");
+  var headerHitNext = document.querySelector(".hit-next");
+  headerHitNext.innerHTML = "Hit " + activeHitNext.innerHTML;
+
 }
 
 function drawScoreboardSplit(list, lastthrows) {

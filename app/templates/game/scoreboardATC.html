@@ -8,37 +8,49 @@
 
 {% block content %}
 <div class="container-fluid" id="content">
-	<div id="scoreheader" class="row border-bottom border-top rounded">
-		<div class="col">
-			<table id="header-cricket-left" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Active Player{% endtrans %}:</td>
-					<td id="header-activePlayer">{{ player }}</td>
-				</tr><tr>
-					<td>{% trans %}Player round{% endtrans %}:</td>
-					<td id="header-rndcount">{{ rndcount }}</td>
-				</tr><tr>
-					<td>{% trans %}Player Throws{% endtrans %}:</td>
-					<td id="header-throwcount">{{ throwcount }}</td>
-				</tr>
-			</table>
-		</div>
-
-		<div class="col">
-			<table id="header-cricket-right" class="table table-sm table-dark table-striped">
-				<tr>
-					<td>{% trans %}Game{% endtrans %}:</td>
-					<td>{{ gametype }}</td>
-				</tr><tr>
-					<td>{% trans %}Variant{% endtrans %}:</td>
-					<td>{{ variant }}</td>
-				</tr>
-			</table>
+	<div id="scoreheader" class="row border-bottom border-top">
+		<div class="row h4 w-100 mb-0" id="scoreheader">
+			<div class="col border-right">
+				<div class="row">
+					<div class="col-3">{% trans %}Game{% endtrans %}:</div>
+					<div class="col-9 text-center">{{ gametype }}</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="row">
+					<div class="col">{% trans %}Variant{% endtrans %}:</div>
+					<div class="col">{{ variant }}</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<br>
-	<div class="row border-top rounded" id="score"></div>
+	<div class="row p-3" id="header-active">
+		<div class="col-6">
+			<div class="row round-info">
+				<div class="col-12" id="header-activePlayer">
+					{{ player }}
+				</div>
+				<div class="col info-table">
+					<table id="active-player-info" class="table table-sm text-light h2 m-0">
+						<tbody>
+							<tr>
+								<td>{% trans %}Round{% endtrans %}:</td>
+								<td id="header-rndcount" class="text-center">{{ rndcount }}</td>
+							</tr>
+							<tr>
+								<td>{% trans %}Throws{% endtrans %}:</td>
+								<td id="header-throwcount" class="text-center">{{ throwcount }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 display-1 hit-next">
+		</div>
+	</div>
+	<div class="row border-top" id="score">
+	</div>
 </div>
-<br>
 
 {% endblock %}
